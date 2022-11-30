@@ -18,11 +18,11 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { AjaxWaitInterceptor, MainModule } from './main';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
-import { DemosComponent } from './demos/demos.component';
+import { DemosComponent, SvgComponent } from './demos/demos.component';
 
 @NgModule({
   declarations: [
-    AppComponent, CalculadoraComponent, DemosComponent,
+    AppComponent, CalculadoraComponent, DemosComponent, SvgComponent,
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, NgOptimizedImage,
