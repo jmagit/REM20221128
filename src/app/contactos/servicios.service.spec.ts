@@ -11,8 +11,8 @@ import { NavigationService, NotificationService } from '../common-services';
 import { Contactos, ContactosDAOService, ContactosViewModelService } from './servicios.service';
 
 export class DAOServiceMock<T, K> extends RESTDAOService<T, number> {
-  constructor(http: HttpClient, public listado: Array<T>) {
-    super(http, '')
+  constructor(public listado: Array<T>) {
+    super('')
   }
   override query(): Observable<Array<T>> {
     return of(this.listado);
@@ -91,12 +91,12 @@ describe('ContactosViewModelService', () => {
       imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [NotificationService, LoggerService,
         {
-          provide: ContactosDAOService, useFactory: (http: HttpClient) => new DAOServiceMock<Contactos, number>(http, [
+          provide: ContactosDAOService, useFactory: () => new DAOServiceMock<Contactos, number>([
             {"id":1,"tratamiento":"Sra.","nombre":"Marline","apellidos":"Lockton Jerrans","telefono":"846 054 444","email":"mjerrans0@de.vu","sexo":"M","nacimiento":"1973-07-09","avatar":"https://randomuser.me/api/portraits/women/1.jpg","conflictivo":true},
             {"id":2,"tratamiento":"Sr.","nombre":"Beale","apellidos":"Knibb Koppe","telefono":"093 804 977","email":"bkoppe0@apache.org","sexo":"H","nacimiento":"1995-11-22","avatar":"https://randomuser.me/api/portraits/men/1.jpg","conflictivo":false},
             {"id":3,"tratamiento":"Srta.","nombre":"Gwenora","apellidos":"Forrestor Fitzackerley","telefono":"853 134 343","email":"gfitzackerley1@opensource.org","sexo":"M","nacimiento":"1968-06-12","avatar":"https://randomuser.me/api/portraits/women/2.jpg","conflictivo":false},
             {"id":4,"tratamiento":"Sr.","nombre":"Umberto","apellidos":"Langforth Spenclay","telefono":"855 032 596","email":"uspenclay1@mlb.com","sexo":"H","nacimiento":"2000-05-15","avatar":"https://randomuser.me/api/portraits/men/2.jpg","conflictivo":false}
-          ]), deps: [HttpClient]
+          ])
         }
       ],
     });

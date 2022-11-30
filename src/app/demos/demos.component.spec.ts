@@ -1,5 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { LoggerService, MyCoreModule } from 'src/lib/my-core';
 import { NavigationService, NotificationService } from '../common-services';
 
@@ -13,7 +14,7 @@ describe('DemosComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DemosComponent ],
       providers: [ NavigationService, NotificationService, LoggerService ],
-      imports: [MyCoreModule],
+      imports: [MyCoreModule, FormsModule],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();

@@ -12,8 +12,8 @@ import { AuthService, AUTH_REQUIRED } from '../security';
   providedIn: 'root'
 })
 export class BlogDAOService extends RESTDAOService<any, any> {
-  constructor(http: HttpClient) {
-    super(http, 'blog', { withCredentials: true, context: new HttpContext().set(AUTH_REQUIRED, true) });
+  constructor() {
+    super('blog', { withCredentials: true, context: new HttpContext().set(AUTH_REQUIRED, true) });
   }
   page(page: number, rows: number = 20): Observable<{ page: number, pages: number, rows: number, list: Array<any> }> {
     return new Observable(subscriber => {

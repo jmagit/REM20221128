@@ -25,8 +25,8 @@ export class Contactos {
   providedIn: 'root'
 })
 export class ContactosDAOService extends RESTDAOService<any, any> {
-  constructor(http: HttpClient) {
-    super(http, 'contactos', { context: new HttpContext().set(AUTH_REQUIRED, true) });
+  constructor() {
+    super('contactos', { context: new HttpContext().set(AUTH_REQUIRED, true) });
   }
   page(page: number, rows: number = 20): Observable<{ page: number, pages: number, rows: number, list: Array<any> }> {
     return new Observable(subscriber => {

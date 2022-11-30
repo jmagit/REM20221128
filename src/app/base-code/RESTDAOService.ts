@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export abstract class RESTDAOService<T, K> {
   protected baseUrl = environment.apiURL;
+  protected http: HttpClient = inject(HttpClient)
 
-  constructor(protected http: HttpClient, entidad: string, protected option = {}) {
+  constructor(entidad: string, protected option = {}) {
     this.baseUrl += entidad;
   }
   query(): Observable<Array<T>> {
