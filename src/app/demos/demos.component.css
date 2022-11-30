@@ -1,0 +1,19 @@
+.error {
+  color: red;
+}
+
+.importante {
+  font-size: 1.5em;
+}
+
+.urgente {
+  font-style: italic;
+}
+
+.semivisible {
+  opacity: 0.2;
+}
+
+.ng-dirty {
+  border-color: rgb(255, 217, 0);
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationService } from './common-services';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'curso';
+  constructor(private nav: NavigationService) {}
 }
