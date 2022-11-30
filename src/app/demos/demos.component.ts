@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Unsubscribable } from 'rxjs';
 import { NotificationService, NotificationType } from '../common-services';
 
@@ -47,7 +48,8 @@ export class DemosComponent implements OnInit, OnDestroy {
 
   fontSize = 24;
 
-  constructor(public vm: NotificationService) { }
+  constructor(public vm: NotificationService,
+    protected route: ActivatedRoute, protected router: Router) { }
 
   get Nombre(): string { return this.nombre; }
   set Nombre(value: string) {
