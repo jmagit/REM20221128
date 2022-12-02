@@ -83,7 +83,7 @@ describe('ErrorMessagePipe', () => {
   });
 
   it('Con errores', () => {
-    let errors = {
+    const errors = {
       required: true,
       minlength: { requiredLength: 10 },
       maxlength: { requiredLength: 10 },

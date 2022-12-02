@@ -36,7 +36,7 @@ describe('WindowConfirmDirective', () =>  {
 
   it('click confirm', () => {
     let ok = false;
-    let myWinConfirmMessage = 'Texto de confirmación'
+    const myWinConfirmMessage = 'Texto de confirmación'
     component.MyOutput = () => ok = true;
     component.MyInput = myWinConfirmMessage
     spyOn(window, 'confirm').and.returnValue(true)
@@ -49,7 +49,7 @@ describe('WindowConfirmDirective', () =>  {
 
   it('click cancel', () => {
     let ok = false;
-    let myWinConfirmMessage = 'Texto de confirmación'
+    const myWinConfirmMessage = 'Texto de confirmación'
     component.MyOutput = () => ok = true;
     component.MyInput = myWinConfirmMessage
     spyOn(window, 'confirm').and.returnValue(false)

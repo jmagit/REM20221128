@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'my-sizer',
   template: `
   <div>

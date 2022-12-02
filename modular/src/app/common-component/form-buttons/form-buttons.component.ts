@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({

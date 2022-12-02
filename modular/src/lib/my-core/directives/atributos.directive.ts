@@ -1,9 +1,11 @@
+/* eslint-disable @angular-eslint/directive-selector */
 import { Directive, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ErrorMessagePipe } from '../pipes/cadenas.pipe';
 
 @Directive({ selector: `[myWinConfirm]` })
 export class WindowConfirmDirective {
   @Output('myWinConfirm') winConfirm: EventEmitter<any> = new EventEmitter();
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('myWinConfirmMessage') winConfirmMessage = '¿Seguro?';
   @HostBinding('class.pressed') isPressed: boolean = false;
 
@@ -19,8 +21,8 @@ export class WindowConfirmDirective {
 
 @Directive({ selector: '[show]' })
 export class ShowDirective {
-  @HostBinding('hidden') hidden: boolean = false;
-  @Input('show') set show(value: boolean) { this.hidden = !value; }
+  @HostBinding() hidden: boolean = false;
+  @Input() set show(value: boolean) { this.hidden = !value; }
 }
 
 @Directive({ selector: '[myShowErrors]' })

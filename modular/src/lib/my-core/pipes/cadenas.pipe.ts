@@ -23,9 +23,9 @@ export class CapitalizePipe implements PipeTransform {
 export class StripTagsPipe implements PipeTransform {
 
   transform(text: string, ...allowedTags: any[]): string {
-    let etiquetas = `(?:.|\s)*?`
+    const etiquetas = `(?:.|\\s)*?`
     return allowedTags.length > 0
-      ? text.replace(new RegExp(`<(?!\/?(${allowedTags.join('|')})\s*\/?)[^>]+>`, 'g'), '')
+      ? text.replace(new RegExp(`<(?!\\/?(${allowedTags.join('|')})\\s*\\/?)[^>]+>`, 'g'), '')
       : text.replace(new RegExp(`<${etiquetas}>`, 'g'), '');
   }
 }
@@ -39,7 +39,7 @@ export class ErrorMessagePipe implements PipeTransform {
       return;
     }
     let msg = '';
-    for (let err in value) {
+    for (const err in value) {
       switch (err) {
         case 'required':
           msg += 'Es obligatorio. ';

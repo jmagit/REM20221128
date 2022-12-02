@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/directive-selector */
 import { Directive, ElementRef } from '@angular/core';
 import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationErrors } from '@angular/forms';
 
