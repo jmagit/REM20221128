@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GraficoSvgComponent } from './grafico-svg.component';
+import GraficoSvgComponent from './grafico-svg.component';
 
 describe('GraficoSvgComponent', () => {
   let component: GraficoSvgComponent;
