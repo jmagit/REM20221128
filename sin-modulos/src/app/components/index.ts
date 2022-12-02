@@ -1,0 +1,5 @@
+export * from './common-component/card.component'
+export * from './common-component/form-buttons/form-buttons.component'
+export * from './common-component/show-errors-messages/show-errors-messages.component'
+export * from './calculadora/calculadora.component'
+export * from './demo/demo.component'
