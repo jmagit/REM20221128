@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 import { NotificationService } from '../common-services';
 
 import { ContactosComponent } from './componente.component';

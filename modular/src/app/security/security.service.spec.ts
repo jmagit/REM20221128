@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 import { AuthInterceptor, AuthService, LoginService, AuthGuard, InRoleGuard } from './security.service';
 
 describe('AuthService', () => {

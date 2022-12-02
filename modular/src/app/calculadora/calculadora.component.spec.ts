@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ERROR_LEVEL, LoggerService } from 'src/lib/my-core';
+import { ERROR_LEVEL, LoggerService } from '@my/core';
 import { NotificationService, NotificationType } from '../common-services';
 
 import { CalculadoraComponent } from './calculadora.component';

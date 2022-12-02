@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotificationService } from 'src/app/common-services';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 
 import { NotificationModalComponent } from './notification-modal.component';
 

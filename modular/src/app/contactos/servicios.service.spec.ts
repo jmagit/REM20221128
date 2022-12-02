@@ -4,7 +4,7 @@ import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 import { RESTDAOService } from '../base-code/RESTDAOService';
 import { NavigationService, NotificationService } from '../common-services';
 

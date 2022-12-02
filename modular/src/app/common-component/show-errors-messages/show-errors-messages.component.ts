@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ErrorMessagePipe } from 'src/lib/my-core/pipes/cadenas.pipe';
+import { ErrorMessagePipe } from '@my/core';
 
 @Component({
   selector: 'app-show-errors-messages',

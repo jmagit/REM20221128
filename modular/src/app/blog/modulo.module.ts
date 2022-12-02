@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { MyCoreModule } from 'src/lib/my-core';
+import { MyCoreModule } from '@my/core';
 import { CommonServicesModule } from '../common-services';
 import { BlogAddComponent, BlogEditComponent, BlogListComponent, BlogViewComponent, BLOG_COMPONENTES } from './componente.component';
 import { PaginatorModule } from 'primeng/paginator';

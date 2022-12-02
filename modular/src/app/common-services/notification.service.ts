@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 
 export enum NotificationType { error, warn, info, log }
 

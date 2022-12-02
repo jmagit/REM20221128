@@ -1,5 +1,5 @@
 import { Router, NavigationEnd, ActivationStart } from '@angular/router';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 import { NotificationService, NotificationType } from '../common-services';
 
 @Component({

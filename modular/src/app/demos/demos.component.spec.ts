@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { LoggerService, MyCoreModule } from 'src/lib/my-core';
+import { LoggerService, MyCoreModule } from '@my/core';
 import { NavigationService, NotificationService } from '../common-services';
 
 import { DemosComponent } from './demos.component';

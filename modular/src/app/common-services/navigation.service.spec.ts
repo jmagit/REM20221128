@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { ERROR_LEVEL, LoggerService } from 'src/lib/my-core';
+import { ERROR_LEVEL, LoggerService } from '@my/core';
 import { NavigationService } from './navigation.service';
 
 describe('NavigationService', () => {

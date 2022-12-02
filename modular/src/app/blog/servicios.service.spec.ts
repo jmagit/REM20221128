@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, throwError } from 'rxjs';
-import { LoggerService } from 'src/lib/my-core';
+import { LoggerService } from '@my/core';
 import { RESTDAOService } from '../base-code/RESTDAOService';
 import { NavigationService, NotificationService } from '../common-services';
 

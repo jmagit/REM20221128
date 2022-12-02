@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { ERROR_LEVEL, LoggerService, MyCoreModule } from 'src/lib/my-core';
+import { ERROR_LEVEL, LoggerService, MyCoreModule } from '@my/core';
 import { CommonComponentModule } from './common-component';
 import { CommonServicesModule } from './common-services';
 import { ContactosModule } from './contactos';

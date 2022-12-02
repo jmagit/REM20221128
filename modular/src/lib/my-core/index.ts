@@ -1,3 +1,7 @@
 export * from './my-core.module'
 export { LoggerService, ERROR_LEVEL } from './services/logger.service'
-export { NIFValidator, UppercaseValidator, } from './directives/validadores/mis-validaciones.directive'
+export * from './directives/validadores/mis-validaciones.directive'
+export * from './pipes/cadenas.pipe'
+export * from './pipes/numericos.pipe'
+export * from './directives/atributos.directive'
+export * from './directives/estructurales.directive'
