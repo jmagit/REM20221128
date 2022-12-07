@@ -45,6 +45,7 @@ export class AjaxWaitInterceptor implements HttpInterceptor {
       width: 100%;
       height: 100%;
       opacity: 0.3;
+      z-index:100;
     }
     img {
       position: fixed;
@@ -53,6 +54,7 @@ export class AjaxWaitInterceptor implements HttpInterceptor {
       width: 10%;
       height: auto;
       opacity: 1;
+      z-index:101;
     }
   `],
 })

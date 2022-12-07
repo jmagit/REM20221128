@@ -18,11 +18,11 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/contactos" ><i class="fa-solid fa-address-book"></i> contactos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="auth.isInRoles('Empleados','Administradores')">
           <a class="nav-link" routerLinkActive="active" routerLink="/alisha/passion" ><i class="fa-solid fa-user"></i> alisha</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/libros" *ngIf="auth.isInRoles('Administradores')" ><i class="fa-solid fa-book"></i> libros</a>
+        <li class="nav-item" *ngIf="auth.isInRoles('Administradores')">
+          <a class="nav-link" routerLinkActive="active" routerLink="/libros" ><i class="fa-solid fa-book"></i> libros</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/blog" ><i class="fa-solid fa-blog"></i> blog</a>

@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { ContactosAddComponent, ContactosEditComponent, ContactosListComponent, ContactosViewComponent } from './contactos';
-import { AuthGuard, InRoleGuard, RegisterUserComponent } from './security';
+import { AuthGuard, AuthService, AuthWithLoginRedirectGuard, InRoleGuard, LoginFormComponent, RegisterUserComponent } from './security';
 import { HomeComponent, PageNotFoundComponent } from './main';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { DemosComponent } from './demos/demos.component';
-import { BlogListComponent, BlogAddComponent, BlogEditComponent, BlogViewComponent } from './blog';
 
 function htmlFiles(url: UrlSegment[]) {
   return url.length === 1 && url[0].path.endsWith('.html') ? ({consumed: url}) : null;
@@ -32,16 +31,15 @@ const routes: Routes = [
   //     { path: ':id/:kk', component: BlogViewComponent },
   //   ], title: 'Blog'
   // },
-  { path: 'blog', loadChildren: () => import('./blog').then(mod => mod.BlogModule)},
+  { path: 'blog', loadChildren: () => import('./blog').then(mod => mod.BlogModule), canActivate: [AuthWithLoginRedirectGuard], /*canDeactivate: [() => inject(AuthService). isAutenticated],*/ },
   {
     path: 'config', loadChildren: () => import('./config/config.module'),
     // path: 'config', loadChildren: () => import('./config/config.module').then(mod => mod.ConfigModule),
     canLoad: [InRoleGuard], data: { roles: ['Administradores', 'ADMIN'] }
   },
-
   // { path: 'falsa', loadComponent: () => import('./grafico-svg/grafico-svg.component'), },
-  {path: 'falsa', loadChildren: () => import('./rutas').then(mod => mod.ADMIN_ROUTES)},
-
+  // { path: 'falsa', loadChildren: () => import('./rutas').then(mod => mod.ADMIN_ROUTES), },
+  { path: 'login', component: LoginFormComponent },
   { path: 'registro', component: RegisterUserComponent },
   { path: '404.html', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },
@@ -49,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes/*, { onSameUrlNavigation: 'reload' }*/)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
