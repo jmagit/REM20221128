@@ -169,23 +169,7 @@ export class AuthInterceptor implements HttpInterceptor {
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.authService.isAutenticated;
-  }
-}
-@Injectable({ providedIn: 'root' })
-export class AuthWithRootRedirectGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(!this.authService.isAutenticated) this.router.navigateByUrl('/');
-    return this.authService.isAutenticated;
-  }
-}
-@Injectable({ providedIn: 'root' })
-export class AuthWithLoginRedirectGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) { }
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(!this.authService.isAutenticated)
-      this.router.navigate(['/', 'login'], { queryParams: { returnUrl: state.url }});
+    if(!this.authService.isAutenticated && route?.data['redirectTo']) this.router.navigateByUrl(route?.data['redirectTo']);
     return this.authService.isAutenticated;
   }
 }

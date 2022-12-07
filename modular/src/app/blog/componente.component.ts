@@ -45,12 +45,12 @@ export class BlogListComponent implements OnInit, OnDestroy {
     //     if (e instanceof NavigationStart)
     //       this.vm.load()
     //   });
-    this.login$ = this.eventBus.on('login', () => {
-      this.vm.load()
-    })
-    this.logout$ = this.eventBus.on('logout', () => {
-      this.router.navigateByUrl('/')
-    })
+    // this.login$ = this.eventBus.on('login', () => {
+    //   this.vm.load()
+    // })
+    // this.logout$ = this.eventBus.on('logout', () => {
+    //   this.router.navigateByUrl('/')
+    // })
   }
   ngOnDestroy(): void {
     if (this.obs$) this.obs$.unsubscribe();

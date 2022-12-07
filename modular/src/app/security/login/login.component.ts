@@ -1,47 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from '../security.service';
-import { Router } from '@angular/router';
-import { NotificationService } from 'src/app/common-services';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventBusService, NotificationService } from 'src/app/common-services';
 
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
-export class LoginComponent implements OnInit {
-  txtButon = 'Log In';
+export class BaseComponent {
   txtUsuario = 'adm@example.com';
   txtPassword = 'P@$$w0rd';
 
-  constructor(public loginSrv: LoginService, private notify: NotificationService, private router: Router) { }
-
-  ngOnInit() {
-    this.cambiaTexto();
-  }
-
+  constructor(public loginSrv: LoginService, private notify: NotificationService,
+    private route: ActivatedRoute, private router: Router, protected eventBus: EventBusService) { }
   logInOut() {
     if (this.loginSrv.isAutenticated) {
       this.loginSrv.logout();
-      this.cambiaTexto();
     } else {
       this.loginSrv.login(this.txtUsuario, this.txtPassword).subscribe({
         next: data => {
           if (data) {
-            this.cambiaTexto();
+            if (this.route.snapshot.queryParams['returnUrl']) {
+              this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl']);
+              return
+            }
           } else {
-            this.notify.add('Usuario o contraseña invalida.');
+            this.notificaError('Usuario o contraseña invalida.')
           }
         },
-        error: err => { this.notify.add(err.message); }
+        error: err => { this.notificaError(err.message); }
       });
     }
+  }
+
+  protected notificaError(error: string) {
+    this.notify.add(error);
   }
 
   registrar() {
     this.router.navigateByUrl('/registro');
   }
 
-  private cambiaTexto() {
-    this.txtButon = this.loginSrv.isAutenticated ? 'Log Out' : 'Log In';
+  reloadPage(): void {
+    window.location.reload();
+  }
+}
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent extends BaseComponent {
+  private login$: any;
+  private logout$: any;
+  protected visible = true
+  constructor(loginSrv: LoginService, notify: NotificationService, route: ActivatedRoute,
+    router: Router, eventBus: EventBusService) {
+    super(loginSrv, notify, route, router, eventBus)
+    this.login$ = this.eventBus.on('open login form', () => {
+      this.visible = false
+    })
+    this.logout$ = this.eventBus.on('close login form', () => {
+      this.visible = true
+    })
+  }
+}
+
+@Component({
+  selector: 'app-login-form',
+  templateUrl: './login-form.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginFormComponent extends BaseComponent implements OnInit, OnDestroy {
+  errorMessage = '';
+  constructor(loginSrv: LoginService, notify: NotificationService, route: ActivatedRoute,
+    router: Router, eventBus: EventBusService) {
+    super(loginSrv, notify, route, router, eventBus)
+  }
+  ngOnInit(): void {
+    this.eventBus.send('open login form');
+  }
+  ngOnDestroy(): void {
+    this.eventBus.send('close login form');
+  }
+
+  protected override notificaError(error: string) {
+    this.errorMessage = 'Usuario o contraseña invalida.';
   }
 }

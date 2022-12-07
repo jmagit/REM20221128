@@ -1,7 +1,7 @@
 import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes, UrlSegment } from '@angular/router';
 import { ContactosAddComponent, ContactosEditComponent, ContactosListComponent, ContactosViewComponent } from './contactos';
-import { AuthGuard, AuthService, AuthWithLoginRedirectGuard, InRoleGuard, LoginFormComponent, RegisterUserComponent } from './security';
+import { AuthGuard, AuthService, InRoleGuard, LoginFormComponent, RegisterUserComponent } from './security';
 import { HomeComponent, PageNotFoundComponent } from './main';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { DemosComponent } from './demos/demos.component';
@@ -31,7 +31,7 @@ const routes: Routes = [
   //     { path: ':id/:kk', component: BlogViewComponent },
   //   ], title: 'Blog'
   // },
-  { path: 'blog', loadChildren: () => import('./blog').then(mod => mod.BlogModule), canActivate: [AuthWithLoginRedirectGuard], /*canDeactivate: [() => inject(AuthService). isAutenticated],*/ },
+  { path: 'blog', loadChildren: () => import('./blog').then(mod => mod.BlogModule), canActivate: [AuthGuard], data: { redirectTo: '/login'}, /*canDeactivate: [() => inject(AuthService). isAutenticated],*/ },
   {
     path: 'config', loadChildren: () => import('./config/config.module'),
     // path: 'config', loadChildren: () => import('./config/config.module').then(mod => mod.ConfigModule),
