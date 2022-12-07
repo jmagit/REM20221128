@@ -20,6 +20,7 @@ export class BaseComponent {
               this.router.navigateByUrl(this.route.snapshot.queryParams['returnUrl']);
               return
             }
+            this.reloadPage()
           } else {
             this.notificaError('Usuario o contraseña invalida.')
           }

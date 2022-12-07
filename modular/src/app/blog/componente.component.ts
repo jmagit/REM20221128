@@ -27,35 +27,12 @@ export class BlogComponent implements OnInit, OnDestroy {
   styleUrls: ['./componente.component.css']
 })
 export class BlogListComponent implements OnInit, OnDestroy {
-  private obs$: any;
-  private login$: any;
-  private logout$: any;
-  constructor(protected vm: BlogViewModelService, protected route: ActivatedRoute, protected router: Router, private eventBus: EventBusService) { }
+  constructor(protected vm: BlogViewModelService) { }
   public get VM(): BlogViewModelService { return this.vm; }
   ngOnInit(): void {
-    //this.vm.list();
-    //   this.obs$ = this.router.events.pipe(
-    //     filter(e => e instanceof NavigationEnd)
-    //  ).subscribe(e => {
-    //         this.vm.load()
-    //     });
     this.vm.load();
-    // this.obs$ = this.router.events.subscribe(
-    //   e => {
-    //     if (e instanceof NavigationStart)
-    //       this.vm.load()
-    //   });
-    // this.login$ = this.eventBus.on('login', () => {
-    //   this.vm.load()
-    // })
-    // this.logout$ = this.eventBus.on('logout', () => {
-    //   this.router.navigateByUrl('/')
-    // })
   }
   ngOnDestroy(): void {
-    if (this.obs$) this.obs$.unsubscribe();
-    if (this.login$) this.login$.unsubscribe();
-    if (this.logout$) this.logout$.unsubscribe();
     this.vm.clear();
   }
 }

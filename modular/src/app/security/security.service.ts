@@ -14,10 +14,12 @@ export class AuthService {
   private refresh: string = '';
   private name = '';
   private roles: Array<string> = []
+  private storage: any;
 
   constructor(private eventBus: EventBusService) {
-    if (localStorage && localStorage['AuthService']) {
-      const rslt = JSON.parse(localStorage['AuthService']);
+    this.storage = sessionStorage ?? localStorage;
+    if (this.storage && this.storage['AuthService']) {
+      const rslt = JSON.parse(this.storage['AuthService']);
       this.isAuth = rslt.isAuth;
       this.authToken = rslt.authToken;
       this.refresh = rslt.refresh;
@@ -38,8 +40,8 @@ export class AuthService {
     this.refresh = refresh;
     this.name = name;
     this.roles = roles;
-    if (localStorage) {
-      localStorage['AuthService'] = JSON.stringify({ isAuth: this.isAuth, authToken, refresh, name, roles });
+    if (this.storage) {
+      this.storage['AuthService'] = JSON.stringify({ isAuth: this.isAuth, authToken, refresh, name, roles });
     }
     this.eventBus.send('login')
   }
@@ -55,8 +57,8 @@ export class AuthService {
     this.refresh = '';
     this.name = '';
     this.roles = [];
-    if (localStorage) {
-      localStorage.removeItem('AuthService');
+    if (this.storage) {
+      this.storage.removeItem('AuthService');
     }
     this.eventBus.send('logout')
   }
@@ -169,7 +171,8 @@ export class AuthInterceptor implements HttpInterceptor {
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(!this.authService.isAutenticated && route?.data['redirectTo']) this.router.navigateByUrl(route?.data['redirectTo']);
+    if (!this.authService.isAutenticated && route?.data['redirectTo'])
+      this.router.navigate([route?.data['redirectTo']], { queryParams: { returnUrl: state.url } });
     return this.authService.isAutenticated;
   }
 }

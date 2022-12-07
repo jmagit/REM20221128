@@ -18,20 +18,18 @@ export class NavigationService {
           this.title.setTitle('Curso de Angular');
         }
       }
-      if (e instanceof NavigationEnd) {
+      if (e instanceof NavigationEnd && !e.url.includes('/login')) {
         this.history.push(e.url);
         if (this.history.length > this.MAX_CACHE) this.history.splice(0, 1)
-        logger.log(`NavigationEnd ${e.url}`);
+        logger.log(`${this.history.length} NavigationEnd ${e.url}`);
       }
       if (e instanceof GuardsCheckEnd) {
         const ev = e as GuardsCheckEnd
         logger.log(`GuardsCheckEnd to ${e.url}: ${ev.shouldActivate}`);
       }
     });
-    // eventBus.on('login', () => {
-    //   this.router.navigateByUrl(router.routerState.snapshot.url)
-    // })
   }
+
   back(defecto: string = '/', delta: number = 1) {
     while (delta && this.history.length > 0) {
       this.history.pop();
