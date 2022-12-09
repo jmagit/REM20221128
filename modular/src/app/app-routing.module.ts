@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'contactos/:id/edit', component: ContactosEditComponent, canActivate: [AuthGuard] },
   { path: 'contactos/:id', component: ContactosViewComponent },
   { path: 'contactos/:id/:kk', component: ContactosViewComponent },
-  { path: 'alisha/passion', redirectTo: '/contactos/9' },
+  { path: 'alisha/passion', redirectTo: '/contactos/43' },
   // {
   //   path: 'blog', children: [
   //     { path: '', component: BlogListComponent },

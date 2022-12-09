@@ -16,7 +16,7 @@ export const APP_ROUTES: Routes = [
     { path: ':id', loadComponent: () => import('./contactos/componente.view.component').then(cmp => cmp.ContactosViewComponent) },
     { path: ':id/:kk', loadComponent: () => import('./contactos/componente.view.component').then(cmp => cmp.ContactosViewComponent) },
   ] },
-  { path: 'alisha/passion', redirectTo: '/contactos/9' },
+  { path: 'alisha/passion', redirectTo: '/contactos/43' },
   // { path: 'contactos', component: ContactosListComponent, data: { pageTitle: 'Contactos' } },
   // { path: 'contactos/add', component: ContactosAddComponent, canActivate: [AuthGuard] },
   // { path: 'contactos/:id/edit', component: ContactosEditComponent, canActivate: [AuthGuard] },

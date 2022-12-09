@@ -15,7 +15,13 @@
   [attr.aria-hidden]="!VM.HayNotificaciones">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header bg-secondary bg-gradient text-white">
+      <div class="modal-header bg-gradient text-white"
+        [ngClass]="{
+            'bg-danger': VM.Listado[0].Type === VM.NotificationType.error,
+            'bg-warning': VM.Listado[0].Type === VM.NotificationType.warn,
+            'bg-primary': VM.Listado[0].Type === VM.NotificationType.info,
+            'bg-success': VM.Listado[0].Type === VM.NotificationType.log
+           }">
         <h5 class="modal-title" id="exampleModalLabel">Notificaciones</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
           (click)="VM.clear()"></button>
@@ -40,29 +46,29 @@
         </svg>
         <ng-container *ngFor="let item of VM.Listado; let i=index">
           <ng-container [ngSwitch]="item.Type">
-            <div *ngSwitchCase="VM.NotificationType.error" class="m-0 p-3 alert-danger d-flex align-items-center"
+            <div *ngSwitchCase="VM.NotificationType.error" class="m-0 p-3 alert alert-danger d-flex align-items-center rounded-0"
               role="alert">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+              <svg class="bi flex-shrink-0 me-2 text-danger" width="24" height="24" role="img" aria-label="Danger:">
                 <use xlink:href="#forbiben-circle-fill" />
               </svg>
               <div>{{item.Message}}</div>
             </div>
-            <div *ngSwitchCase="VM.NotificationType.warn" class="m-0 p-3 alert-warning d-flex align-items-center"
+            <div *ngSwitchCase="VM.NotificationType.warn" class="m-0 p-3 alert alert-warning d-flex align-items-center rounded-0"
               role="alert">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+              <svg class="bi flex-shrink-0 me-2 text-warning" width="24" height="24" role="img" aria-label="Danger:">
                 <use xlink:href="#exclamation-triangle-fill" />
               </svg>
               <div>{{item.Message}}</div>
             </div>
-            <div *ngSwitchCase="VM.NotificationType.info" class="m-0 p-3 alert-primary d-flex align-items-center"
+            <div *ngSwitchCase="VM.NotificationType.info" class="m-0 p-3 alert alert-primary d-flex align-items-center rounded-0"
               role="alert">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+              <svg class="bi flex-shrink-0 me-2 text-primary" width="24" height="24" role="img" aria-label="Info:">
                 <use xlink:href="#info-fill" />
               </svg>
               <div>{{item.Message}}</div>
             </div>
-            <div *ngSwitchDefault class="m-0 p-3 alert-success d-flex align-items-center" role="alert">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+            <div *ngSwitchDefault class="m-0 p-3 alert alert-success d-flex align-items-center rounded-0" role="alert">
+              <svg class="bi flex-shrink-0 me-2 text-success" width="24" height="24" role="img" aria-label="Info:">
                 <use xlink:href="#check-circle-fill" />
               </svg>
               <div>{{item.Message}}</div>

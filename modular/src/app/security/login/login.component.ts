@@ -51,7 +51,7 @@ export class BaseComponent {
 export class LoginComponent extends BaseComponent {
   private login$: any;
   private logout$: any;
-  protected visible = true
+  visible = true
   constructor(loginSrv: LoginService, notify: NotificationService, route: ActivatedRoute,
     router: Router, eventBus: EventBusService) {
     super(loginSrv, notify, route, router, eventBus)
@@ -76,10 +76,10 @@ export class LoginFormComponent extends BaseComponent implements OnInit, OnDestr
     super(loginSrv, notify, route, router, eventBus)
   }
   ngOnInit(): void {
-    this.eventBus.send('open login form');
+    this.eventBus.emit('open login form');
   }
   ngOnDestroy(): void {
-    this.eventBus.send('close login form');
+    this.eventBus.emit('close login form');
   }
 
   protected override notificaError(error: string) {

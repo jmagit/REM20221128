@@ -43,11 +43,11 @@ export class AuthService {
     if (this.storage) {
       this.storage['AuthService'] = JSON.stringify({ isAuth: this.isAuth, authToken, refresh, name, roles });
     }
-    this.eventBus.send('login')
+    this.eventBus.emit('login')
   }
   isInRoles(...rolesArgs: Array<string>) {
     if (this.isAutenticated && this.roles.length > 0 && rolesArgs.length > 0)
-      for (let role of rolesArgs)
+      for (const role of rolesArgs)
         if (this.roles.includes(role)) return true;
     return false;
   }
@@ -60,7 +60,7 @@ export class AuthService {
     if (this.storage) {
       this.storage.removeItem('AuthService');
     }
-    this.eventBus.send('logout')
+    this.eventBus.emit('logout')
   }
 }
 
@@ -81,6 +81,7 @@ export class LoginService {
   get Roles() { return this.auth.Roles; }
 
   login(usr: string, pwd: string) {
+    if(this.auth.isAutenticated) this.auth.logout();
     return new Observable(observable =>
       this.http.post<LoginResponse>(environment.securityApiURL + 'login', { username: usr, password: pwd })
         .subscribe({
@@ -101,6 +102,8 @@ export class LoginService {
           switchMap(data => {
             if (data.success === true) {
               this.auth.login(data.token ?? '', data.refresh ?? '', data.name ?? '', data.roles ?? []);
+            } else {
+              this.auth.logout()
             }
             return of([data.success])
           })
