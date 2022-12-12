@@ -184,13 +184,13 @@ export class AuthGuard implements CanActivate {
 export class InRoleGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(private authService: AuthService, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.authService.isInRoles(...route.data['roles']);
+    return route.data['roles'] ? this.authService.isInRoles(...route.data['roles']) : false;
   }
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return this.authService.isInRoles(...childRoute.data['roles']);
+    return childRoute.data['roles'] ? this.authService.isInRoles(...childRoute.data['roles']) : false;
   }
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return route.data ? this.authService.isInRoles(...route.data['roles']) : false;
+    return route.data && route.data['roles'] ? this.authService.isInRoles(...route.data['roles']) : false;
   }
 }
 

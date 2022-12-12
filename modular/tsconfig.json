@@ -1,8 +1,7 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   /* Angular-CLI with Jasmine unit tests, Chai types conflict */
-  "include": ["src", "./cypress.config.ts"],
-  "exclude": [". /cypress.config.ts"],
+  "exclude": ["cypress", "./cypress.config.ts"],
   /* end */
   "compileOnSave": false,
   "compilerOptions": {

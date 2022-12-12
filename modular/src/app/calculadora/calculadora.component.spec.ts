@@ -244,7 +244,7 @@ describe('CalculadoraComponent', () => {
   });
 
   it('cálculos', () => {
-    let tag: HTMLElement = fixture.debugElement.query(By.css('.Pantalla')).nativeElement;
+    const tag: HTMLElement = fixture.debugElement.query(By.css('.Pantalla')).nativeElement;
     expect(tag.textContent?.trim()).toBe('0')
     component.ponOperando(123)
     expect(component.Pantalla).toBe('123')

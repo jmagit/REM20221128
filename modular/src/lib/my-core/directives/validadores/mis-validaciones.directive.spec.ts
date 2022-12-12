@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { NIFValidator, NIFValidatorDirective, UppercaseValidator, UppercaseValidatorDirective, TypeValidatorDirective } from './mis-validaciones.directive';
+import { NIFValidator, NIFValidatorDirective, UppercaseValidator, UppercaseValidatorDirective } from './mis-validaciones.directive';
 
 describe('NIFValidator', () => {
   const esNIF = NIFValidator()

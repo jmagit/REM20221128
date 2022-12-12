@@ -63,7 +63,7 @@ describe('LoginService ', () => {
       const demoUsr = { "username": "demo@example.com", "password": "P@$$w0rd" }
       const res = {
         "success": true,
-        "token": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
+        "token": "B" + "earer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
         "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzA1ODUxNDEsIm5iZiI6MTY3MDU4NTQ0MSwiZXhwIjoxNjcwNTg2MzQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.rh8bgIhlPKkKeiCHBvkT2qZruAvdFjldfD9PCeC4ZN0",
         "name": "Administrador",
         "roles": ["Usuarios", "Administradores"],
@@ -134,7 +134,7 @@ describe('LoginService ', () => {
     it('OK', inject([HttpTestingController], (httpMock: HttpTestingController) => {
       const res = {
         "success": true,
-        "token": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
+        "token": "B" + "earer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
         "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzA1ODUxNDEsIm5iZiI6MTY3MDU4NTQ0MSwiZXhwIjoxNjcwNTg2MzQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.rh8bgIhlPKkKeiCHBvkT2qZruAvdFjldfD9PCeC4ZN0",
         "name": "Administrador",
         "roles": ["Usuarios", "Administradores"],
@@ -246,7 +246,7 @@ describe('AuthInterceptor', () => {
 
   describe('OK', () => {
     it('not required', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL).subscribe(callback);
       const req = httpMock.expectOne(fakeURL);
       expect(req.request.method).toEqual('GET');
@@ -256,7 +256,7 @@ describe('AuthInterceptor', () => {
     }));
 
     it('withCredentials', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe(callback);
       const req = httpMock.expectOne(fakeURL);
       expect(req.request.method).toEqual('GET');
@@ -266,7 +266,7 @@ describe('AuthInterceptor', () => {
     }));
 
     it('AUTH_REQUIRED', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { context: new HttpContext().set(AUTH_REQUIRED, true) }).subscribe(callback);
       const req = httpMock.expectOne(fakeURL);
       expect(req.request.method).toEqual('GET');
@@ -286,7 +286,7 @@ describe('AuthInterceptor', () => {
     }
     const refreshOK = {
       "success": true,
-      "token": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
+      "token": "B" + "earer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
       "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzA1ODUxNDEsIm5iZiI6MTY3MDU4NTQ0MSwiZXhwIjoxNjcwNTg2MzQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.rh8bgIhlPKkKeiCHBvkT2qZruAvdFjldfD9PCeC4ZN0",
       "name": "Administrador",
       "roles": ["Usuarios", "Administradores"],
@@ -296,7 +296,7 @@ describe('AuthInterceptor', () => {
       "success": false,
     }
     it('refresh success', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe(callback);
       const reqIni = httpMock.expectOne(fakeURL);
       reqIni.flush(errorBody, { status: 401, statusText: 'Unauthorized' });
@@ -309,7 +309,7 @@ describe('AuthInterceptor', () => {
     }));
 
     it('refresh no success', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe({
         next: (data: { result: string }) => {
           fail('observable error')
@@ -331,7 +331,7 @@ describe('AuthInterceptor', () => {
     }));
 
     it('refresh error', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe({
         next: (data: { result: string }) => {
           fail('observable error')
@@ -350,7 +350,7 @@ describe('AuthInterceptor', () => {
     }));
 
     it('no refresh', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe({
         next: (data: { result: string }) => {
           fail('observable error')

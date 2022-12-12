@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentFixture, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoggerService } from '@my/core';
-import { DAOServiceMock, RESTDAOService } from '../base-code/RESTDAOService';
+import { DAOServiceMock } from '../base-code/RESTDAOService';
 import { NavigationService, NotificationService } from '../common-services';
 
 import { Contactos, ContactosDAOService, ContactosViewModelService } from './servicios.service';
@@ -34,14 +34,12 @@ describe('Modulo Contactos', () => {
     });
 
     it('query', inject([ContactosDAOService, HttpTestingController], (dao: ContactosDAOService, httpMock: HttpTestingController) => {
-      dao.query().subscribe(
-        {
+      dao.query().subscribe({
           next: data => {
             expect(data.length).toEqual(dataMock.length);
           },
-          error: data => { fail(); }
-        }
-      );
+          error: () => { fail('has executed "error" callback'); }
+        });
       const req = httpMock.expectOne(apiURL);
       expect(req.request.method).toEqual('GET');
       req.flush([...dataMock]);
@@ -49,14 +47,12 @@ describe('Modulo Contactos', () => {
     }));
 
     it('get', inject([ContactosDAOService, HttpTestingController], (dao: ContactosDAOService, httpMock: HttpTestingController) => {
-      dao.get(1).subscribe(
-        {
+      dao.get(1).subscribe({
           next: data => {
             expect(data).toEqual(dataMock[0]);
           },
-          error: data => { fail(); }
-        }
-      );
+          error: () => { fail('has executed "error" callback'); }
+        });
       const req = httpMock.expectOne(`${apiURL}/1`);
       expect(req.request.method).toEqual('GET');
       req.flush({ ...dataMock[0] });
@@ -65,7 +61,7 @@ describe('Modulo Contactos', () => {
 
     it('add', inject([ContactosDAOService, HttpTestingController], (dao: ContactosDAOService, httpMock: HttpTestingController) => {
       const item = { ...dataAddMock };
-      dao.add(item).subscribe(() => { });
+      dao.add(item).subscribe();
       const req = httpMock.expectOne(`${apiURL}`);
       expect(req.request.method).toEqual('POST');
       for (const key in dataEditMock) {
@@ -78,7 +74,7 @@ describe('Modulo Contactos', () => {
 
     it('change', inject([ContactosDAOService, HttpTestingController], (dao: ContactosDAOService, httpMock: HttpTestingController) => {
       const item = { ...dataEditMock };
-      dao.change(1, item).subscribe(() => { });
+      dao.change(1, item).subscribe();
       const req = httpMock.expectOne(`${apiURL}/1`);
       expect(req.request.method).toEqual('PUT');
       for (const key in dataEditMock) {
@@ -90,8 +86,7 @@ describe('Modulo Contactos', () => {
     }));
 
     it('delete', inject([ContactosDAOService, HttpTestingController], (dao: ContactosDAOService, httpMock: HttpTestingController) => {
-      const item = { ...dataEditMock };
-      dao.remove(1).subscribe(() => { });
+      dao.remove(1).subscribe();
       const req = httpMock.expectOne(`${apiURL}/1`);
       expect(req.request.method).toEqual('DELETE');
       httpMock.verify();
@@ -251,7 +246,6 @@ describe('Modulo Contactos', () => {
           for (const key in dataEditMock) {
             service.Elemento[key] = dataEditMock[key];
           }
-          const elemento = service.Elemento
           service.send()
           tick()
           const listado = (dao as { [i: string]: any })['listado']

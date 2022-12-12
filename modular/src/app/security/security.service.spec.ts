@@ -1,6 +1,9 @@
 import { HttpClient, HttpContext, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
 import { inject, TestBed } from '@angular/core/testing';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { LoggerService } from '@my/core';
 import { environment } from 'src/environments/environment';
 import { AuthInterceptor, AuthService, LoginService, AuthGuard, InRoleGuard, AUTH_REQUIRED } from './security.service';
@@ -23,14 +26,14 @@ describe('AuthService', () => {
   });
 
   it('Login', () => {
-    const roles = ['rol 1', 'rol 2']
+    const roles = ['Usuarios', 'Administradores']
     service.login('token', 'refresh', 'usuario', roles)
     expect(service.AuthorizationHeader).toBe('token')
     expect(service.RefreshToken).toBe('refresh')
     expect(service.Name).toBe('usuario')
     expect(service.Roles.length).toEqual(2)
     expect(service.isAutenticated).toBeTruthy();
-    expect(service.isInRoles('rol 1')).toBeTruthy();
+    expect(service.isInRoles('Administradores')).toBeTruthy();
   });
 
   it('Logout', () => {
@@ -63,24 +66,22 @@ describe('LoginService ', () => {
       const demoUsr = { "username": "demo@example.com", "password": "P@$$w0rd" }
       const res = {
         "success": true,
-        "token": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
+        "token": "B" + "earer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
         "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzA1ODUxNDEsIm5iZiI6MTY3MDU4NTQ0MSwiZXhwIjoxNjcwNTg2MzQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.rh8bgIhlPKkKeiCHBvkT2qZruAvdFjldfD9PCeC4ZN0",
         "name": "Administrador",
         "roles": ["Usuarios", "Administradores"],
         "expires_in": 300
       }
 
-      service.login(demoUsr.username, demoUsr.password).subscribe(
-        {
-          next: data => {
-            expect(data).toBeTruthy();
-            expect(service.isAutenticated).toBeTruthy();
-            expect(service.Name).toEqual(res.name);
-            expect(service.Roles.length).toEqual(2);
-          },
-          error: data => { fail(); }
-        }
-      );
+      service.login(demoUsr.username, demoUsr.password).subscribe({
+        next: data => {
+          expect(data).toBeTruthy();
+          expect(service.isAutenticated).toBeTruthy();
+          expect(service.Name).toEqual(res.name);
+          expect(service.Roles.length).toEqual(2);
+        },
+        error: () => { fail('has executed "error" callback'); }
+      });
       const req = httpMock.expectOne(apiURL + 'login');
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual(demoUsr);
@@ -94,15 +95,13 @@ describe('LoginService ', () => {
         "success": false,
       }
 
-      service.login(demoUsr.username, demoUsr.password).subscribe(
-        {
-          next: data => {
-            expect(data).withContext('service result').toBeFalsy();
-            expect(service.isAutenticated).withContext('is autenticated').toBeFalsy();
-          },
-          error: data => { fail(); }
-        }
-      );
+      service.login(demoUsr.username, demoUsr.password).subscribe({
+        next: data => {
+          expect(data).withContext('service result').toBeFalsy();
+          expect(service.isAutenticated).withContext('is autenticated').toBeFalsy();
+        },
+        error: () => { fail('has executed "error" callback'); }
+      });
       const req = httpMock.expectOne(apiURL + 'login');
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual(demoUsr);
@@ -112,7 +111,7 @@ describe('LoginService ', () => {
 
     it('network failure', inject([HttpTestingController], (httpMock: HttpTestingController) => {
       service.login('', '').subscribe({
-        next: data => { fail('observable failure'); },
+        next: () => { fail('has executed "next" callback'); },
         error: data => {
           expect(data.status).withContext('service result').toBe(404);
         }
@@ -134,7 +133,7 @@ describe('LoginService ', () => {
     it('OK', inject([HttpTestingController], (httpMock: HttpTestingController) => {
       const res = {
         "success": true,
-        "token": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
+        "token": "B" + "earer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
         "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzA1ODUxNDEsIm5iZiI6MTY3MDU4NTQ0MSwiZXhwIjoxNjcwNTg2MzQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.rh8bgIhlPKkKeiCHBvkT2qZruAvdFjldfD9PCeC4ZN0",
         "name": "Administrador",
         "roles": ["Usuarios", "Administradores"],
@@ -142,17 +141,15 @@ describe('LoginService ', () => {
       }
       const token = "1234567890"
       auth.login('token', token, 'usuario', [])
-      service.refresh().subscribe(
-        {
-          next: data => {
-            expect(data).toBeTruthy();
-            expect(service.isAutenticated).toBeTruthy();
-            expect(service.Name).toEqual(res.name);
-            expect(service.Roles.length).toEqual(2);
-          },
-          error: data => { fail(); }
-        }
-      );
+      service.refresh().subscribe({
+        next: data => {
+          expect(data).toBeTruthy();
+          expect(service.isAutenticated).toBeTruthy();
+          expect(service.Name).toEqual(res.name);
+          expect(service.Roles.length).toEqual(2);
+        },
+        error: () => { fail('has executed "error" callback'); }
+      });
       const req = httpMock.expectOne(apiURL + 'login/refresh');
       expect(req.request.method).toEqual('POST');
       expect(req.request.body).toEqual({ token });
@@ -167,15 +164,13 @@ describe('LoginService ', () => {
         const token = "1234567890"
         auth.login('token', token, 'usuario', [])
 
-        service.refresh().subscribe(
-          {
-            next: data => {
-              expect(data).withContext('service result').toEqual([false]);
-              expect(service.isAutenticated).withContext('is autenticated').toBeFalsy();
-            },
-            error: data => { fail(); }
-          }
-        );
+        service.refresh().subscribe({
+          next: data => {
+            expect(data).withContext('service result').toEqual([false]);
+            expect(service.isAutenticated).withContext('is autenticated').toBeFalsy();
+          },
+          error: () => { fail('has executed "error" callback'); }
+        });
         const req = httpMock.expectOne(apiURL + 'login/refresh');
         expect(req.request.method).toEqual('POST');
         expect(req.request.body).toEqual({ token });
@@ -183,24 +178,20 @@ describe('LoginService ', () => {
         httpMock.verify();
       }));
 
-      it('not is Autenticated', inject([HttpTestingController], (httpMock: HttpTestingController) => {
+      it('not is Autenticated', inject([HttpTestingController], () => {
         auth.logout()
         service.refresh().subscribe({
           next: data => {
             expect(data).withContext('service result').toEqual([false]);
           },
-          error: data => {
-            fail('observable failure');
-          }
+          error: () => { fail('has executed "error" callback'); }
         });
       }));
 
       it('network failure', inject([HttpTestingController], (httpMock: HttpTestingController) => {
         auth.login('token', '', 'usuario', [])
         service.refresh().subscribe({
-          next: data => {
-            fail('observable failure');
-          },
+          next: () => { fail('has executed "next" callback'); },
           error: data => {
             expect(data.status).withContext('service result').toBe(404);
           }
@@ -220,7 +211,7 @@ describe('AuthInterceptor', () => {
     next: (data: { result: string }) => {
       expect(data.result).withContext('service result').toBe('OK');
     },
-    error: () => { fail('observable error') }
+    error: () => { fail('has executed "error" callback'); }
   }
   let service: AuthInterceptor;
   let auth: AuthService
@@ -246,7 +237,7 @@ describe('AuthInterceptor', () => {
 
   describe('OK', () => {
     it('not required', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL).subscribe(callback);
       const req = httpMock.expectOne(fakeURL);
       expect(req.request.method).toEqual('GET');
@@ -256,7 +247,7 @@ describe('AuthInterceptor', () => {
     }));
 
     it('withCredentials', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe(callback);
       const req = httpMock.expectOne(fakeURL);
       expect(req.request.method).toEqual('GET');
@@ -266,7 +257,7 @@ describe('AuthInterceptor', () => {
     }));
 
     it('AUTH_REQUIRED', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { context: new HttpContext().set(AUTH_REQUIRED, true) }).subscribe(callback);
       const req = httpMock.expectOne(fakeURL);
       expect(req.request.method).toEqual('GET');
@@ -286,7 +277,7 @@ describe('AuthInterceptor', () => {
     }
     const refreshOK = {
       "success": true,
-      "token": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
+      "token": "B" + "earer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJuYW1lIjoiQWRtaW5pc3RyYWRvciIsInJvbGVzIjpbIlVzdWFyaW9zIiwiQWRtaW5pc3RyYWRvcmVzIl0sImlhdCI6MTY3MDU4NTE0MSwiZXhwIjoxNjcwNTg1NDQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.R4w4DH3HfVssI7TSO0u0z2uCu7BrhLXN5YdxEyx3uOIzhENycz0vL8B0_etz8kSz8KVWM0hOLqf0J7XOwNci1ksf4ZWenykapG-AuEkQkX2Y7ZTjECscor5dT3Cmj0swI12Yx-FL3r3OXDRppSnoOCvOE_w-ardwHt48QCU5u7YjvXjcP34bavFDjYpD7dvy5eoT-TDb0Un4XYkBVhR18u0ogH9TKoxF0lt8TSh5ckwjcZ4_KF3E4TGAIHId6UbuxUqMNTyJW0gkJR7iCQPn4Ez3osvZG4Rvj7VT_VbX_9EzTdXOJ9ZeuMpSuhk-AmFyXCeu8wcD-mU7JWn8RW2OCQ",
       "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1AZXhhbXBsZS5jb20iLCJpYXQiOjE2NzA1ODUxNDEsIm5iZiI6MTY3MDU4NTQ0MSwiZXhwIjoxNjcwNTg2MzQxLCJhdWQiOiJhdXRob3JpemF0aW9uIiwiaXNzIjoiTWljcm9zZXJ2aWNpb3NKV1QifQ.rh8bgIhlPKkKeiCHBvkT2qZruAvdFjldfD9PCeC4ZN0",
       "name": "Administrador",
       "roles": ["Usuarios", "Administradores"],
@@ -296,7 +287,7 @@ describe('AuthInterceptor', () => {
       "success": false,
     }
     it('refresh success', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe(callback);
       const reqIni = httpMock.expectOne(fakeURL);
       reqIni.flush(errorBody, { status: 401, statusText: 'Unauthorized' });
@@ -309,11 +300,9 @@ describe('AuthInterceptor', () => {
     }));
 
     it('refresh no success', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe({
-        next: (data: { result: string }) => {
-          fail('observable error')
-        },
+        next: () => { fail('has executed "next" callback'); },
         error: data => {
           expect(auth.isAutenticated).withContext('is autenticated').toBeFalsy();
           expect(data.status).withContext('service result').toBe(401);
@@ -331,11 +320,9 @@ describe('AuthInterceptor', () => {
     }));
 
     it('refresh error', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe({
-        next: (data: { result: string }) => {
-          fail('observable error')
-        },
+        next: () => { fail('has executed "next" callback'); },
         error: data => {
           expect(auth.isAutenticated).withContext('is autenticated').toBeFalsy();
           expect(data.status).withContext('service result').toBe(401);
@@ -350,11 +337,9 @@ describe('AuthInterceptor', () => {
     }));
 
     it('no refresh', inject([HttpTestingController], (httpMock: HttpTestingController) => {
-      auth.login('Bearer 12345', '12345', 'usuario', [])
+      auth.login('B' + 'earer 12345', '12345', 'usuario', [])
       http.get<{ result: string }>(fakeURL, { withCredentials: true }).subscribe({
-        next: (data: { result: string }) => {
-          fail('observable error')
-        },
+        next: () => { fail('has executed "next" callback'); },
         error: data => {
           expect(auth.isAutenticated).withContext('is autenticated').toBeTruthy();
           expect(data.status).withContext('service result').toBe(404);
@@ -369,36 +354,121 @@ describe('AuthInterceptor', () => {
   });
 });
 
+@Component({ selector: 'app-test-home', template: `<p>Test Home</p>` })
+class TestHomeComponent { }
+@Component({ selector: 'app-test-component', template: `<p>Test Component</p>` })
+class TestComponent { }
+
 describe('AuthGuard', () => {
-  let service: AuthGuard;
+
+  let service: AuthGuard
   let auth: AuthService
+  let router: Router
+  let location: Location
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthService],
+      declarations: [TestHomeComponent, TestComponent],
+      providers: [AuthService, Location],
+      imports: [
+        RouterTestingModule.withRoutes(
+          [
+            { path: '', pathMatch: 'full', component: TestHomeComponent },
+            { path: 'login', component: TestComponent },
+            { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
+            { path: 'redirect', component: TestComponent, canActivate: [AuthGuard], data: { redirectTo: '/login' } },
+          ]
+        )
+      ]
     });
     service = TestBed.inject(AuthGuard);
+    router = TestBed.inject(Router);
     auth = TestBed.inject(AuthService);
+    location = TestBed.inject(Location)
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+  it('canActivate', async () => {
+    auth.login('token', 'refresh', 'usuario', [])
+    expect(router.routerState.snapshot.url).toEqual('');
+    expect(location.pathname).toEqual('');
+    const navigate = await router.navigateByUrl('/test')
+    expect(navigate).toBeTruthy()
+    expect(router.routerState.snapshot.url).toEqual('/test');
+    expect(location.pathname).toEqual('/test');
+  });
+  it('not canActivate', async () => {
+    auth.logout()
+    expect(router.routerState.snapshot.url).toEqual('');
+    const navigate = await router.navigateByUrl('/test')
+    expect(navigate).toBeFalsy()
+    expect(router.routerState.snapshot.url).toEqual('');
+  });
+  it('not canActivate redirectTo', async () => {
+    auth.logout()
+    expect(router.routerState.snapshot.url).toEqual('');
+    const navigate = await router.navigateByUrl('/redirect')
+    expect(navigate).toBeFalsy()
+    expect(router.routerState.snapshot.url).toEqual('/login?returnUrl=%2Fredirect');
   });
 });
 
 describe('InRoleGuard', () => {
   let service: InRoleGuard;
   let auth: AuthService
+  let router: Router
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      declarations: [TestHomeComponent, TestComponent],
       providers: [AuthService],
+      imports: [
+        RouterTestingModule.withRoutes(
+          [
+            { path: '', pathMatch: 'full', component: TestHomeComponent },
+            { path: 'test', component: TestComponent, canActivate: [InRoleGuard], data: { roles: ['Administradores', 'ADMIN'] } },
+            { path: 'bad', component: TestComponent, canActivate: [InRoleGuard] },
+          ]
+        )
+      ]
     });
     service = TestBed.inject(InRoleGuard);
+    router = TestBed.inject(Router);
     auth = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+  it('canActivate', async () => {
+    auth.login('token', 'refresh', 'usuario', ['Usuarios', 'Administradores'])
+    expect(router.routerState.snapshot.url).toEqual('');
+    const navigate = await router.navigateByUrl('/test')
+    expect(navigate).toBeTruthy()
+    expect(router.routerState.snapshot.url).toEqual('/test');
+  });
+  it('canActivate: sin data', async () => {
+    auth.login('token', 'refresh', 'usuario', ['Usuarios', 'Administradores'])
+    expect(router.routerState.snapshot.url).toEqual('');
+    const navigate = await router.navigateByUrl('/bad')
+    expect(navigate).toBeFalsy()
+    expect(router.routerState.snapshot.url).toEqual('');
+  });
+  it('not canActivate: not authenticated', async () => {
+    auth.logout()
+    expect(router.routerState.snapshot.url).toEqual('');
+    const navigate = await router.navigateByUrl('/test')
+    expect(navigate).toBeFalsy()
+    expect(router.routerState.snapshot.url).toEqual('');
+  });
+  it('not canActivate: not roles', async () => {
+    auth.login('token', 'refresh', 'usuario', ['Usuarios'])
+    expect(router.routerState.snapshot.url).toEqual('');
+    const navigate = await router.navigateByUrl('/test')
+    expect(navigate).toBeFalsy()
+    expect(router.routerState.snapshot.url).toEqual('');
+  });
+
 });

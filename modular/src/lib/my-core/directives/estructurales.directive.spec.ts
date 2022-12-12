@@ -11,13 +11,14 @@ class UnlessDirectiveHostComponent {
   MyInput: any = null;
 }
 
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
-  booleanCondition: boolean = true;
-  nestedBooleanCondition: boolean = true;
-  numberCondition: number = 1;
-  stringCondition: string = 'foo';
-  functionCondition: Function = (s: any, n: any): boolean => s == 'foo' && n == 1;
+  booleanCondition = true;
+  nestedBooleanCondition = true;
+  numberCondition = 1;
+  stringCondition = 'foo';
+  functionCondition = (s: any, n: any): boolean => s == 'foo' && n == 1;
 }
 
 function createTestComponent(template: string): ComponentFixture<TestComponent> {
