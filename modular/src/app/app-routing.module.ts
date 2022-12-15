@@ -14,14 +14,13 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'inicio', component: HomeComponent },
   { path: 'demos', component: DemosComponent, title: 'Demos de componentes'  },
-  { matcher: htmlFiles, component: DemosComponent, title: 'Demos de matcher' },
   { path: 'chisme/de/hacer/numeros', component: CalculadoraComponent, data: { pageTitle: 'Calculadora' } },
   { path: 'contactos', component: ContactosListComponent, data: { pageTitle: 'Contactos' } },
   { path: 'contactos/add', component: ContactosAddComponent, canActivate: [AuthGuard] },
   { path: 'contactos/:id/edit', component: ContactosEditComponent, canActivate: [AuthGuard] },
   { path: 'contactos/:id', component: ContactosViewComponent },
   { path: 'contactos/:id/:kk', component: ContactosViewComponent },
-  { path: 'alisha/passion', redirectTo: '/contactos/43' },
+  { path: 'alisha/passion', redirectTo: '/contactos/443' },
   // {
   //   path: 'blog', children: [
   //     { path: '', component: BlogListComponent },
@@ -42,8 +41,8 @@ const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'registro', component: RegisterUserComponent },
   { path: '404.html', component: PageNotFoundComponent },
+  { matcher: htmlFiles, component: DemosComponent, title: 'Demos de matcher' },
   { path: '**', component: PageNotFoundComponent },
-
 ];
 
 @NgModule({

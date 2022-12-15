@@ -1,4 +1,4 @@
-import { HttpClient, HttpContext } from '@angular/common/http';
+import { HttpContext, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -34,10 +34,10 @@ export class ContactosDAOService extends RESTDAOService<any, any> {
         `${this.baseUrl}?_page=${page}&_rows=${rows}&_sort=nombre` :
         `${this.baseUrl}?page=${page}&size=${rows}&sort=nombre`;
       this.http.get<any>(url, this.option).subscribe({
-                next: data => subscriber.next({ page: data.number, pages: data.totalPages, rows: data.totalElements, list: data.content }),
-                error: err => subscriber.error(err)
-              })
-        })
+        next: data => subscriber.next({ page: data.number, pages: data.totalPages, rows: data.totalElements, list: data.content }),
+        error: err => subscriber.error(err)
+      })
+    })
   }
 }
 
@@ -65,7 +65,7 @@ export class ContactosViewModelService {
         this.listado = data;
         this.modo = 'list';
       },
-      error: err => this.notify.add(err.message)
+      error: err => this.handleError(err)
     });
   }
 
@@ -80,7 +80,7 @@ export class ContactosViewModelService {
         this.idOriginal = key;
         this.modo = 'edit';
       },
-      error: err => this.notify.add(err.message)
+      error: err => this.handleError(err)
     });
   }
   public view(key: any): void {
@@ -89,7 +89,7 @@ export class ContactosViewModelService {
         this.elemento = data;
         this.modo = 'view';
       },
-      error: err => this.notify.add(err.message)
+      error: err => this.handleError(err)
     });
   }
   public delete(key: any): void {
@@ -97,7 +97,7 @@ export class ContactosViewModelService {
 
     this.dao.remove(key).subscribe({
       next: data => this.load(), // this.list(),
-      error: err => this.notify.add(err.message)
+      error: err => this.handleError(err)
     });
   }
 
@@ -115,13 +115,13 @@ export class ContactosViewModelService {
       case 'add':
         this.dao.add(this.elemento).subscribe({
           next: data => this.cancel(),
-          error: err => this.notify.add(err.message)
+          error: err => this.handleError(err)
         });
         break;
       case 'edit':
         this.dao.change(this.idOriginal, this.elemento).subscribe({
           next: data => this.cancel(),
-          error: err => this.notify.add(err.message)
+          error: err => this.handleError(err)
         });
         break;
       case 'view':
@@ -134,6 +134,20 @@ export class ContactosViewModelService {
     this.elemento = {};
     this.idOriginal = null;
     this.listado = [];
+  }
+
+  handleError(err: HttpErrorResponse) {
+    let msg = ''
+    switch (err.status) {
+      case 0: msg = err.message; break;
+      case 404:
+        // msg = `ERROR: ${err.status} ${err.statusText}`; break;
+        this.router.navigateByUrl('/404.html'); return;
+      default:
+        msg = `ERROR: ${err.status} ${err.statusText}.${err.error['title'] ? ` Detalles: ${err.error['title']}` : ''}`
+        break;
+    }
+    this.notify.add(msg)
   }
 
   page = 0;
@@ -150,7 +164,7 @@ export class ContactosViewModelService {
         this.listado = rslt.list;
         this.modo = 'list';
       },
-      error: err => this.notify.add(err.message)
+      error: err => this.handleError(err)
     })
   }
 }
