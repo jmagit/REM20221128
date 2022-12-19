@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Injectable, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { NotificationService } from 'src/app/common-services';
 import { WebSocketService } from '../web-socket.services';
 
 @Injectable({

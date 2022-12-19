@@ -1,0 +1,9 @@
+<div class="principal">
+  <div class="multiple">
+    <p-chart *ngFor="let item of multiple" type="doughnut" [data]="item" [options]="multipleOptions"></p-chart>
+  </div>
+  <div class="simple">
+    <p-chart type="bar" [data]="simple" [options]="simpleOptions" width="90vw" height="40vh"></p-chart>
+  </div>
+</div>
+<!-- {{ comun | json }} -->
