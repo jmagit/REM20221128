@@ -19,16 +19,16 @@ import { environment } from 'src/environments/environment';
 import { AjaxWaitInterceptor, MainModule } from './main';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { DemosComponent, SvgComponent } from './demos/demos.component';
-import { ChatComponent } from './chat/chat.component';
+import { WebSocketModule } from './web-socket';
 
 @NgModule({
   declarations: [
-    AppComponent, CalculadoraComponent, DemosComponent, SvgComponent, ChatComponent,
+    AppComponent, CalculadoraComponent, DemosComponent, SvgComponent,
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, NgOptimizedImage,
     AppRoutingModule, MainModule, SecurityModule, MyCoreModule, CommonServicesModule,
-    CommonComponentModule, ContactosModule,
+    CommonComponentModule, ContactosModule, WebSocketModule,
   ],
   providers: [
     LoggerService,

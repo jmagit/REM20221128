@@ -5,7 +5,7 @@ import { AuthGuard, AuthService, InRoleGuard, LoginFormComponent, RegisterUserCo
 import { HomeComponent, PageNotFoundComponent } from './main';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { DemosComponent } from './demos/demos.component';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent, RemoteCanvasComponent } from './web-socket';
 
 function htmlFiles(url: UrlSegment[]) {
   return url.length === 1 && url[0].path.endsWith('.html') ? ({consumed: url}) : null;
@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'contactos/:id/:kk', component: ContactosViewComponent },
   { path: 'alisha/passion', redirectTo: '/contactos/443' },
   { path: 'chat', component: ChatComponent, data: { pageTitle: 'Chat' } },
+  { path: 'canvas', component: RemoteCanvasComponent, title: 'Canvas' },
   // {
   //   path: 'blog', children: [
   //     { path: '', component: BlogListComponent },
