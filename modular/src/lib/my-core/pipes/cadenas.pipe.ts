@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { map } from 'rxjs';
 
 @Pipe({
   name: 'elipsis'
@@ -14,8 +15,12 @@ export class ElipsisPipe implements PipeTransform {
   name: 'capitalize'
 })
 export class CapitalizePipe implements PipeTransform {
-  transform(value: any, args?: any): any {
-    return value?.charAt(0)?.toUpperCase() + value?.substring(1)?.toLowerCase();
+  transform(value: string): any {
+    return value?.toString().toLowerCase().split(".").map(frase => frase.trim())
+      .map((frase, index, array) => frase.length === 0  ? (array.length > 1 && index + 1 < array.length  ? (array[index + 1] ==='' ? '.' : '. '): '')
+       : frase.charAt(0)?.toUpperCase() + frase?.substring(1) + (array.length > 1 && index + 1 < array.length ? (array[index + 1] ==='' ? '.' : '. '):''))
+      .join('').trim()
+    // return value?.charAt(0)?.toUpperCase() + value?.substring(1)?.toLowerCase();
   }
 }
 

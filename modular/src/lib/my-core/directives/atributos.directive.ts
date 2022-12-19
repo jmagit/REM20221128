@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/directive-selector */
-import { Directive, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ErrorMessagePipe } from '../pipes/cadenas.pipe';
 
 @Directive({ selector: `[myWinConfirm]` })
@@ -25,6 +25,13 @@ export class ShowDirective {
   @Input() set show(value: boolean) { this.hidden = !value; }
 }
 
+@Directive({ selector: '[focused]' })
+export class FocusedDirective {
+  @Input() set focused(value: boolean) { if(value) this.el.nativeElement.focus(); }
+  constructor(private el: ElementRef) {
+ }
+}
+
 @Directive({ selector: '[myShowErrors]' })
 export class ShowErrorsDirective implements OnChanges {
   private pipe = new ErrorMessagePipe();
@@ -44,4 +51,4 @@ export class ShowErrorsDirective implements OnChanges {
 }
 
 
-export const DIRECTIVAS_ATRIBUTO = [WindowConfirmDirective, ShowDirective, ShowErrorsDirective,]
+export const DIRECTIVAS_ATRIBUTO = [WindowConfirmDirective, ShowDirective, ShowErrorsDirective, FocusedDirective, ]

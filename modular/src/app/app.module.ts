@@ -19,10 +19,11 @@ import { environment } from 'src/environments/environment';
 import { AjaxWaitInterceptor, MainModule } from './main';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { DemosComponent, SvgComponent } from './demos/demos.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
-    AppComponent, CalculadoraComponent, DemosComponent, SvgComponent,
+    AppComponent, CalculadoraComponent, DemosComponent, SvgComponent, ChatComponent,
   ],
   imports: [
     BrowserModule, FormsModule, HttpClientModule, NgOptimizedImage,

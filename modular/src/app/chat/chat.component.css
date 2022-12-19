@@ -1,0 +1,331 @@
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  max-height: 800px;
+  width: 100%;
+  margin: 0;
+  padding: 5px;
+  font-family: sans-serif;
+  background: #fff;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  flex-direction: row;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4c4c6a;
+  border-radius: 2px;
+}
+
+aside ::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+aside {
+  width: 300px;
+  max-height: 100%;
+  /* max-height: 300px; */
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background-color: #40434e;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+  margin-right: 3px;
+  font-size: 15px;
+  vertical-align: top;
+  /* width: 260px;
+  background-color: #40434e;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28); */
+}
+
+aside header {
+  padding: 20px 10px;
+}
+
+aside input {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 50px 0 20px;
+  background-color: #5e616a;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48IS0tISBGb250IEF3ZXNvbWUgRnJlZSA2LjIuMSBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZS9mcmVlIChJY29uczogQ0MgQlkgNC4wLCBGb250czogU0lMIE9GTCAxLjEsIENvZGU6IE1JVCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyMiBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTQxNiAyMDhjMCA0NS45LTE0LjkgODguMy00MCAxMjIuN0w1MDIuNiA0NTcuNGMxMi41IDEyLjUgMTIuNSAzMi44IDAgNDUuM3MtMzIuOCAxMi41LTQ1LjMgMEwzMzAuNyAzNzZjLTM0LjQgMjUuMi03Ni44IDQwLTEyMi43IDQwQzkzLjEgNDE2IDAgMzIyLjkgMCAyMDhTOTMuMSAwIDIwOCAwUzQxNiA5My4xIDQxNiAyMDh6TTIwOCAzNTJjNzkuNSAwIDE0NC02NC41IDE0NC0xNDRzLTY0LjUtMTQ0LTE0NC0xNDRTNjQgMTI4LjUgNjQgMjA4czY0LjUgMTQ0IDE0NCAxNDR6Ii8+PC9zdmc+");
+  background-repeat: no-repeat;
+  background-position: 170px;
+  background-size: 24px;
+}
+
+aside input::placeholder {
+  color: #fff;
+}
+
+aside ul {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+  overflow-y: scroll;
+}
+
+aside li {
+  padding: 2px 0;
+}
+
+aside li:hover {
+  background-color: #5e616a;
+}
+
+aside h2,
+aside h3 {
+  margin: 0;
+}
+
+aside li img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: 20px;
+  margin-right: 8px;
+}
+
+aside li div {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 12px;
+}
+
+aside li h2 {
+  font-size: 14px;
+  color: #fff;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+aside li h3 {
+  font-size: 12px;
+  color: #7e818a;
+  font-weight: normal;
+}
+
+.status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 7px;
+}
+
+.green {
+  background-color: #58b666;
+}
+
+.orange {
+  background-color: #ff725d;
+}
+
+.blue {
+  background-color: #6fbced;
+  margin-right: 0;
+  margin-left: 7px;
+}
+
+.chatbox {
+  width: 100%;
+  /* height: 100%; */
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+}
+
+.chatbox header {
+  min-height: 70px;
+  padding: 5px 5px 5px 10px;
+}
+
+.chatbox header>* {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.chatbox header div {
+  margin-left: 10px;
+}
+
+.chatbox header img:first-child {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.chatbox header h2 {
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+.chatbox header h3 {
+  font-size: 14px;
+  font-weight: normal;
+  color: #7e818a;
+}
+
+.chat-window {
+  flex: auto;
+  max-height: calc(100% - 60px);
+  background: #eff3f7;
+  overflow: auto;
+  padding-top: 5px;
+}
+
+.chat-input {
+  flex: 0 0 auto;
+  height: 60px;
+  background: #40434e;
+  border-top: 1px solid #2671ff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+}
+
+.chat-input input {
+  height: 59px;
+  line-height: 60px;
+  outline: 0 none;
+  border: none;
+  width: calc(100% - 60px);
+  color: white;
+  text-indent: 10px;
+  font-size: 12pt;
+  padding: 0;
+  background: #40434e;
+}
+
+.chat-input button {
+  float: right;
+  outline: 0 none;
+  border: none;
+  background: rgba(255, 255, 255, .25);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  padding: 2px 0 0 0;
+  margin: 10px;
+  transition: all 0.15s ease-in-out;
+}
+
+.chat-input input[good]+button {
+  box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
+  background: #2671ff;
+}
+
+.chat-input input[good]+button:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.chat-input input[good]+button path {
+  fill: white;
+}
+
+.msg-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+.msg-box {
+  display: flex;
+  background: #58b666;
+  padding: 10px 10px 0 10px;
+  border-radius: 0 6px 6px 0;
+  max-width: 80%;
+  width: auto;
+  float: left;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
+}
+
+.user-img {
+  display: inline-block;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background: #2671ff;
+  margin: 0 10px 10px 0;
+}
+
+.flr {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 50px);
+}
+
+.messages {
+  flex: 1 0 auto;
+}
+
+.msg {
+  display: inline-block;
+  font-size: 11pt;
+  line-height: 13pt;
+  color: rgba(255, 255, 255, .8);
+  margin: 0 0 4px 0;
+}
+
+.msg:first-of-type {
+  margin-top: 8px;
+}
+
+.timestamp {
+  color: rgba(0, 0, 0, .8);
+  font-size: 8pt;
+  margin-bottom: 10px;
+}
+
+.username {
+  margin-right: 3px;
+}
+
+.posttime {
+  margin-left: 3px;
+}
+
+.msg-self .msg-box {
+  border-radius: 6px 0 0 6px;
+  background: #2671ff;
+  float: right;
+}
+
+.msg-self .user-img {
+  margin: 0 0 10px 10px;
+}
+
+.msg-self .msg {
+  text-align: right;
+}
+
+.msg-self .timestamp {
+  text-align: right;
+}
+
+.server {
+  background: orange;
+}
+
+.server .user-img {
+  background: #ff2626;
+}
