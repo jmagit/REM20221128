@@ -1,6 +1,8 @@
 <div class="principal">
   <div class="multiple">
-    <p-chart *ngFor="let item of multiple" type="doughnut" [data]="item" [options]="multipleOptions"></p-chart>
+    <p-card *ngFor="let item of multiple" [header]="item.datasets[0].label">
+      <p-chart type="doughnut" [data]="item" [options]="multipleOptions"></p-chart>
+    </p-card>
   </div>
   <div class="simple">
     <p-chart type="bar" [data]="simple" [options]="simpleOptions" width="90vw" height="40vh"></p-chart>

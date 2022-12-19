@@ -42,20 +42,43 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // }
     }
     this.simpleOptions = {
-      animation: false,
-      tooltips: {
-        mode: 'index',
-        intersect: false
-      },
-      responsive: true,
-      scales: {
-        xAxes: [{
-          stacked: true,
-        }],
-        yAxes: [{
-          stacked: true
-        }]
-      }
+      animation: { duration: 100 },
+      // tooltips: {
+      //   mode: 'index',
+      //   intersect: false
+      // },
+      // responsive: true,
+      // plugins: {
+      //   legend: {
+      //     labels: {
+      //       color: '#ebedef'
+      //     }
+      //   },
+      //   tooltips: {
+      //     mode: 'index',
+      //     intersect: false
+      //   }
+      // },
+      // scales: {
+      //   x: {
+      //     stacked: true,
+      //     ticks: {
+      //       color: '#ebedef'
+      //     },
+      //     grid: {
+      //       color: 'rgba(255,255,255,0.2)'
+      //     }
+      //   },
+      //   y: {
+      //     stacked: true,
+      //     ticks: {
+      //       color: '#ebedef'
+      //     },
+      //     grid: {
+      //       color: 'rgba(255,255,255,0.2)'
+      //     }
+      //   }
+      // }
     }
   }
   ngOnInit(): void {

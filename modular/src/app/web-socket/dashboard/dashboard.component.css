@@ -12,15 +12,15 @@
   flex-direction: row;
   align-items: stretch;
   justify-items: stretch;
-  /* padding: 5px; */
+  padding: 5px;
 }
-.multiple canvas {
+/* .multiple canvas {
   width: 100px;
-}
-.simple {
+} */
+/* .simple {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-items: stretch;
   padding: 5px;
-}
+} */
